@@ -1,62 +1,81 @@
 import React, { useState } from 'react';
-import AppleButton from './AppleButton';
-import LoginButton from './LoginButton'; // If you created a separate LoginButton
-import './LoginForm.css';
+import './LoginForm.css'; // Make sure you have a LoginForm.css with the styles
 
 const LoginForm = () => {
+  // Initialize form data state
   const [formData, setFormData] = useState({
     name: '',
     password: '',
     id: '',
-    role: 'user', // Default role
+    country: 'United States',
   });
 
+  // Handler for input changes to update state
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
   };
 
+  // Handler for the login button click
   const handleLogin = () => {
-    // Implement your login logic here
-    console.log('Form data:', formData);
+    // Do something with formData, like sending it to a server
+    console.log('Form data submitted:', formData);
   };
 
   return (
     <div className="login-form">
+      {/* Image from the public folder */}
+      <img src={`${process.env.PUBLIC_URL}/favicon.ico`} alt="Your Image" />
+
+      {/* Name Field */}
+      <label htmlFor="name">Name</label>
       <input
         type="text"
+        id="name"
         name="name"
         placeholder="Name"
         value={formData.name}
         onChange={handleInputChange}
       />
+      
+      <label htmlFor="password">Password</label>
       <input
         type="password"
+        id="password"
         name="password"
         placeholder="Password"
         value={formData.password}
         onChange={handleInputChange}
       />
+      
+      <label htmlFor="id">ID</label>
       <input
         type="text"
+        id="id"
         name="id"
         placeholder="ID"
         value={formData.id}
         onChange={handleInputChange}
       />
+      
+      <label htmlFor="country">Country</label>
       <select
-        name="role"
-        value={formData.role}
+        id="country"
+        name="country"
+        value={formData.country}
         onChange={handleInputChange}
       >
-        <option value="user">User</option>
-        <option value="admin">Admin</option>
-        <option value="guest">Guest</option>
+        <option value="United States">United States</option>
+        <option value="Canada">Canada</option>
+        <option value="United Kingdom">United Kingdom</option>
+        <option value="Australia">Australia</option>
+        {/* Add more countries as needed */}
       </select>
-      <LoginButton label="Login" onClick={handleLogin} />
+      
+      <button onClick={handleLogin}>Login</button>
     </div>
   );
 };
