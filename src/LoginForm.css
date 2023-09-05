@@ -1,0 +1,19 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adds space between each flex child */
+}
+
+.login-form input,
+.login-form select {
+  display: block;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%; /* Makes sure each field takes the full width of the parent container */
+}
+
+.login-form button {
+  align-self: flex-end; /* Aligns the button to the end of the flex container */
+}
